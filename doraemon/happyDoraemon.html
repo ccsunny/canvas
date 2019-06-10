@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .box {
+      width: 600px;
+      height: 800px;
+      margin: 0 auto;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <canvas id="canvas" width="600px" height="800px"></canvas>
+  </div>
+  <script>
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext('2d');
+    ctx.lineWidth = 4;
+    function ellipse(context, x, y, a, b) {
+      context.save();
+      var r = (a > b) ? a : b;
+      var ratioX = a / r;
+      var ratioY = b / r;
+      context.scale(ratioX, ratioY);
+      context.beginPath();
+      context.arc(x / ratioX, y / ratioY, r, 0, 2 * Math.PI, false);
+      context.closePath();
+      context.restore();
+      context.fillStyle = "black";
+      if (a <= 10) {
+        context.fillStyle = "white";
+      }
+      context.fill();
+    }
+    //头部外圈
+    ctx.beginPath();
+    ctx.arc(300, 200, 200, 0.25 * Math.PI, 0.75 * Math.PI, true);
+    ctx.quadraticCurveTo(306, 403, 444, 340);
+    var color = ctx.createRadialGradient(140, 50, 20, 120, 30, 200);
+    color.addColorStop(0.0, "white");
+    color.addColorStop(1.0, "#019FE8");
+    ctx.fillStyle = color;
+    ctx.fill();
+    ctx.stroke();
+    ctx.closePath();
+    //头部内圈
+    ctx.beginPath();
+    ctx.arc(300, 230, 175, 0.25 * Math.PI, 0.75 * Math.PI, true);
+    ctx.quadraticCurveTo(306, 403, 424, 350);
+    ctx.fillStyle = "white";
+    ctx.fill();
+    ctx.stroke();
+    ctx.closePath();
+    //左眼睛
+    ctx.beginPath();
+    ctx.moveTo(300, 50);
+    ctx.arc(260, 50, 40, 0, 2 * Math.PI);
+    ctx.moveTo(256, 60);
+    ctx.quadraticCurveTo(273, 25, 286, 60);
+    ctx.fillStyle = "white";
+    ctx.fill();
+    ctx.stroke();
+    ctx.closePath();
+    //右眼睛
+    ctx.beginPath();
+    ctx.moveTo(380, 50);
+    ctx.arc(340, 50, 40, 0, 2 * Math.PI);
+    ctx.fillStyle = "white";
+    ctx.fill();
+    ctx.stroke();
+    ctx.closePath();
+    //椭圆眼珠子
+    ellipse(ctx, 326, 50, 14, 20);
+    ellipse(ctx, 322, 46, 5, 7);
+    //鼻子
+    ctx.beginPath();
+    ctx.moveTo(300, 125);
+    ctx.arc(300, 100, 25, 0.5 * Math.PI, 2.5 * Math.PI);
+    ctx.fillStyle = "#E70012";
+    ctx.fill();
+    ctx.lineTo(300, 200);
+    ctx.stroke();
+    ctx.closePath();
+    ellipse(ctx, 306, 96, 9, 9);
+    //胡须
+    ctx.beginPath();
+    ctx.moveTo(260, 125);
+    ctx.lineTo(180, 100);
+    ctx.moveTo(260, 150);
+    ctx.lineTo(160, 150);
+    ctx.moveTo(260, 175);
+    ctx.lineTo(170, 200);
+    ctx.moveTo(340, 125);
+    ctx.lineTo(420, 100);
+    ctx.moveTo(340, 150);
+    ctx.lineTo(440, 150);
+    ctx.moveTo(340, 175);
+    ctx.lineTo(430, 200);
+    ctx.moveTo(173, 125);
+    ctx.bezierCurveTo(96, 95, 88, 238, 200, 218);
+    ctx.moveTo(422, 119);
+    ctx.bezierCurveTo(501, 84, 517, 217, 402, 215);
+    ctx.fillStyle = "white";
+    ctx.fill();
+    ctx.stroke();
+    ctx.closePath();
+    //嘴巴
+    ctx.beginPath();
+    ctx.moveTo(164, 218);
+    ctx.quadraticCurveTo(298, 453, 434, 214);
+    ctx.bezierCurveTo(414, 218, 340, 192, 300, 200);
+    ctx.bezierCurveTo(260, 192, 186, 218, 164, 218);
+    ctx.fillStyle = "#E70012";
+    ctx.fill();
+    ctx.stroke();
+    ctx.closePath();
+    //舌头
+    ctx.beginPath();
+    ctx.moveTo(233, 308);
+    ctx.bezierCurveTo(230, 271, 283, 268, 300, 284);
+    ctx.bezierCurveTo(319, 271, 371, 264, 359, 310);
+    ctx.quadraticCurveTo(298, 360, 233, 308);
+    ctx.fillStyle = "#EC6D1E";
+    ctx.fill();
+    ctx.stroke();
+    ctx.closePath();
+    //左手
+    ctx.beginPath();
+    ctx.moveTo(100, 400);
+    ctx.arc(80, 440, 45, 0, 2 * Math.PI);
+    ctx.stroke();
+    ctx.closePath();
+    //身子
+    ctx.beginPath();
+    ctx.moveTo(150, 360);
+    ctx.lineTo(100, 400);
+    ctx.quadraticCurveTo(90, 430, 120, 440);
+    ctx.lineTo(150, 430);
+    ctx.lineTo(154, 386);
+    ctx.quadraticCurveTo(140, 500, 150, 560);
+    ctx.quadraticCurveTo(136, 580, 140, 600);
+    ctx.quadraticCurveTo(200, 610, 270, 600);
+    ctx.arc(300, 600, 30, 1 * Math.PI, 2 * Math.PI);
+    ctx.quadraticCurveTo(390, 610, 460, 600);
+    ctx.quadraticCurveTo(466, 580, 450, 560);
+    ctx.quadraticCurveTo(460, 500, 450, 386);
+    ctx.moveTo(452, 420);
+    ctx.lineTo(560, 280);
+    ctx.lineTo(520, 250);
+    ctx.lineTo(480, 286);
+    ctx.quadraticCurveTo(400, 450, 150, 360);
+    ctx.fillStyle = "#019fe8";
+    ctx.fill();
+    ctx.stroke();
+    ctx.closePath();
+    //肚兜
+    ctx.beginPath();
+    ctx.moveTo(200, 440);
+    ctx.bezierCurveTo(170, 580, 440, 570, 400, 440);
+    ctx.bezierCurveTo(390, 360, 210, 360, 200, 440);
+    ctx.moveTo(220, 460);
+    ctx.bezierCurveTo(210, 550, 400, 540, 380, 460);
+    ctx.quadraticCurveTo(300, 470, 220, 460);
+    ctx.fillStyle = "white";
+    ctx.fill();
+    ctx.stroke();
+    ctx.closePath();
+    //脖子
+    ctx.beginPath();
+    ctx.moveTo(444, 340);
+    ctx.quadraticCurveTo(306, 403, 156, 340);
+    ctx.quadraticCurveTo(146, 340, 150, 360);
+    ctx.quadraticCurveTo(306, 423, 450, 360);
+    ctx.quadraticCurveTo(454, 340, 444, 340);
+    ctx.fillStyle = "#E30115";
+    ctx.fill();
+    ctx.stroke();
+    ctx.closePath();
+    //铃铛
+    ctx.beginPath();
+    ctx.moveTo(334, 410);
+    ctx.arc(300, 410, 34, 0, 2 * Math.PI);
+    ctx.strokeStyle = "black";
+    ctx.fillStyle = "#FFD000";
+    ctx.moveTo(265, 404);
+    ctx.quadraticCurveTo(289, 395, 336, 404);
+    ctx.moveTo(265, 412);
+    ctx.quadraticCurveTo(289, 403, 336, 412);
+    ctx.moveTo(300, 444);
+    ctx.lineTo(300, 424);
+    ctx.fill();
+    ctx.stroke();
+    ctx.closePath();
+    ctx.beginPath();
+    ctx.moveTo(305, 420);
+    ctx.arc(300, 420, 5, 0, 2 * Math.PI);
+    ctx.strokeStyle = "black";
+    ctx.fillStyle = "gray";
+    ctx.fill();
+    ctx.stroke();
+    ctx.closePath();
+    //右手
+    ctx.beginPath();
+    ctx.moveTo(595, 250);
+    ctx.arc(550, 250, 45, 0, 2 * Math.PI);
+    ctx.fillStyle = "white";
+    ctx.fill();
+    ctx.stroke();
+    ctx.closePath();
+    //左脚
+    ctx.beginPath();
+    ctx.moveTo(140, 600);
+    ctx.quadraticCurveTo(100, 610, 100, 640);
+    ctx.bezierCurveTo(100, 700, 300, 680, 290, 640);
+    ctx.quadraticCurveTo(290, 610, 270, 600);
+    ctx.stroke();
+    ctx.closePath();
+    //右脚
+    ctx.beginPath();
+    ctx.moveTo(330, 600);
+    ctx.quadraticCurveTo(310, 610, 310, 640);
+    ctx.bezierCurveTo(320, 700, 510, 680, 500, 640);
+    ctx.quadraticCurveTo(500, 610, 460, 600);
+    ctx.stroke();
+    ctx.closePath();
+    //字体
+    ctx.beginPath();
+    ctx.lineWidth = 2;
+    ctx.font = "bold 40px 楷体";
+    var fontColor = ctx.createLinearGradient(250, 455, 280, 545);
+    fontColor.addColorStop(0.0, "yellow");
+    fontColor.addColorStop(1.0, "red");
+    ctx.fillStyle = fontColor;
+    ctx.fillText("梦", 280, 505, 50);
+    ctx.closePath();
+  </script>
+</body>
+</html>
